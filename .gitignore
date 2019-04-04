@@ -1,0 +1,8 @@
+# Content
+content/
+# Dependency directories
+node_modules/
+
+# dotenv environment variables file
+environment/.env-sandbox
+environment/.env-production

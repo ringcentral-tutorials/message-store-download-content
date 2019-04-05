@@ -3,7 +3,6 @@ var async = require('async')
 var fs = require('fs')
 
 require('dotenv').config()
-
 if (process.env.ENVIRONMENT == "sandbox") {
     require('dotenv').config({path: "./environment/.env-sandbox"})
 } else {
@@ -26,8 +25,8 @@ platform.login({
 
 function read_message_store_message_content(){
     platform.get('/account/~/extension/~/message-store', {
-             dateFrom: '2018-01-01T00:00:00.000Z',
-             dateTo: '2018-12-31T23:59:59.999Z',
+             dateFrom: '2019-01-01T00:00:00.000Z',
+             dateTo: '2019-03-31T23:59:59.999Z'
         })
         .then(function (resp) {
           var jsonObj = resp.json()
@@ -45,7 +44,7 @@ function read_message_store_message_content(){
                 function(attachment, callback){
                   var fileName = ""
                   if (record.type == "VoiceMail"){
-                      var fileExt = getFileExteensionFromMimeType(attachment.contentType)
+                      var fileExt = getFileExtensionFromMimeType(attachment.contentType)
                       if (attachment.type == "AudioRecording"){
                         fileName = "voicemail_recording_" + record.attachments[0].id + fileExt
                       }else if (attachment.type == "AudioTranscription" &&
@@ -82,11 +81,14 @@ function read_message_store_message_content(){
             if (index >= count){
                 clearInterval(interval);
             }
-          }, 2100);
-        });
+          }, 2050);
+        })
+        .catch (function(e){
+          console.log(e.message)
+        })
 }
 
-function getFileExteensionFromMimeType(mimeType){
+function getFileExtensionFromMimeType(mimeType){
   switch (mimeType){
     case "text/html": return "html"
     case "text/css": return ".css"

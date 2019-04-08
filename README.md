@@ -9,9 +9,9 @@ To setup a free developer account, click [https://developer/ringcentral.com](her
 
 ### Clone - Setup - Run the project
 ```
-$ git clone https://github.com/ringcentral-tutorials/message-store-download-content
+$ git clone https://github.com/ringcentral-tutorials/message-store-download-content-nodejs-demo
 
-$ cd message-store-download-content
+$ cd message-store-download-content-nodejs-demo
 
 $ npm intall --save
 

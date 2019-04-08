@@ -43,8 +43,8 @@ function read_message_store_message_content(){
               async.each(record.attachments,
                 function(attachment, callback){
                   var fileName = ""
+                  var fileExt = getFileExtensionFromMimeType(attachment.contentType)
                   if (record.type == "VoiceMail"){
-                      var fileExt = getFileExtensionFromMimeType(attachment.contentType)
                       if (attachment.type == "AudioRecording"){
                         fileName = "voicemail_recording_" + record.attachments[0].id + fileExt
                       }else if (attachment.type == "AudioTranscription" &&
@@ -52,11 +52,9 @@ function read_message_store_message_content(){
                           fileName = "voicemail_transcript_"+record.attachments[0].id+".txt"
                       }
                   }else if (record.type == "Fax"){
-                      var fileExt = getFileExteensionFromMimeType(attachment.contentType)
                       fileName = "fax_attachment_" + attachment.id + fileExt
                   }else if (record.type == "SMS"){
                       if (attachment.type == "MmsAttachment"){
-                          var fileExt = getFileExteensionFromMimeType(attachment.contentType)
                           fileName = "mms_attachment_" + record.attachments[0].id + fileExt
                       }else{
                           fileName = "sms_text_" + record.attachments[0].id + ".txt"
@@ -81,7 +79,7 @@ function read_message_store_message_content(){
             if (index >= count){
                 clearInterval(interval);
             }
-          }, 2050);
+          }, 1200);
         })
         .catch (function(e){
           console.log(e.message)

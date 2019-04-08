@@ -38,7 +38,7 @@
       ### Read the user's message store
       We call the "message-store" endpoint and specify the time period using the __dateFrom__ and __dateTo__ query parameters.
 
-      You can specify other query parameters such as __messageType__, __direction__ etc. if you want.
+      You can change the __dateFrom__ and __dateTo__ values, or specify other query parameters such as __messageType__, __direction__ etc. if you want.
 
   .step(data-title='Get ready to parse the response', data-file='../index.js' data-highlight='32-41')
     :markdown
@@ -47,7 +47,7 @@
 
       We also create a "content" folder to store message attachments.
 
-      To get ready for downloading a big amount of attachments, we limit API call to meet the "Usage Plan Group" requirement to avoid exceeding API rate limit. For this API endpoint, it is 40 API calls per minute.
+      To get ready for downloading a big amount of attachments, we need to limit API calls to meet the "Usage Plan Group" requirement to avoid exceeding API rate limit. For this API endpoint, it is 40 API calls per minute.
       For that purpose, we use the _index_ variable to iterate through the __records__ array within the __setInterval__ timer function.
 
   .step(data-title='Detect the message type', data-file='../index.js' data-highlight='43-62')
@@ -57,9 +57,9 @@
 
       We implement the __getFileExtensionFromMimeType()__ function to specify the filename extension based on the attachment __contentType__.
 
-  .step(data-title='Download the message attachment', data-file='../index.js' data-highlight='63-75')
+  .step(data-title='Download and save the message attachment', data-file='../index.js' data-highlight='63-75')
     :markdown
-      ### Download the message attachment
+      ### Download and save the message attachment
       We download the attachment by calling the __platform.get()__ function to get the content from the __attachment.uri__.
 
       Finally, we read the data buffer then save the data to a file under the __content__ folder.
